@@ -133,9 +133,9 @@ def read_batch_result_file(filename, type):
                 print("Line errors {}".format(line))
             
             # text_prod_ids, imag_prod_ids, prod_img_ids, labels, nsp_logits
-            text_prod_ids  = items[0].replace('[', '').replace(']', '').split(',')
-            image_prod_ids = items[1].replace('[', '').replace(']', '').split(',')
-            prod_img_ids   = items[2].replace('[', '').replace(']', '').split(',')
+            text_prod_ids  = items[0].replace('[', '').replace(']', '').replace(' ', '').split(',')
+            image_prod_ids = items[1].replace('[', '').replace(']', '').replace(' ', '').split(',')
+            prod_img_ids   = items[2].replace('[', '').replace(']', '').replace(' ', '').split(',')
             labels         = np.array([int(x) for x in items[3].replace('[', '').replace(']', '').split(',')], dtype=np.int32)
             predictions    = np.array([float(x) for x in items[4].replace('[', '').replace(']', '').split(',')], dtype=np.float32).reshape((-1,2))
             # print(predictions.shape, len(text_prod_ids))
